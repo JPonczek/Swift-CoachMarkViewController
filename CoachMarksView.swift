@@ -64,7 +64,6 @@ class CoachMarksView: UIView {
     var enableContinueLabel = false
     var enableSkipButton = false
     var delegate: CoachMarksViewDelegate?
-    let brand = Brand()
     
     init(frame: CGRect, marks : [AnyObject]){
         super.init(frame: frame)
@@ -89,14 +88,14 @@ class CoachMarksView: UIView {
         self.enableContinueLabel = kEnableContinueLabel
         self.enableSkipButton = kEnableSkipButton
         mask.fillRule = kCAFillRuleEvenOdd
-        mask.fillColor = brand.veryDarkTint.CGColor
+        mask.fillColor = UIColor.blackColor().CGColor
         self.layer.addSublayer(mask)
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "userDidTap:")
         self.addGestureRecognizer(tapGestureRecognizer)
         self.lblCaption = UILabel(frame: CGRectMake(0, 0, self.maxLblWidth, 0.0))
         self.lblCaption.backgroundColor = UIColor.clearColor()
-        self.lblCaption.textColor = brand.background
-        self.lblCaption.font = brand.rhymeFont
+        self.lblCaption.textColor = UIColor.whiteColor()
+        self.lblCaption.font = UIFont.systemFontOfSize(15)
         self.lblCaption.lineBreakMode = .ByWordWrapping
         self.lblCaption.numberOfLines = 0
         self.lblCaption.textAlignment = .Center
@@ -185,11 +184,11 @@ class CoachMarksView: UIView {
         if self.enableContinueLabel {
             if markIndex == 0 {
                 lblContinue = UILabel(frame: CGRectMake(0, self.bounds.height - 30, lblContinueWidth, 30))
-                lblContinue.font = brand.rhymeFont
+                lblContinue.font = UIFont.systemFontOfSize(15)
                 lblContinue.textAlignment = .Center
                 lblContinue.text = "Tap to continue"
                 lblContinue.alpha = 0
-                lblContinue.backgroundColor = brand.background
+                lblContinue.backgroundColor = UIColor.whiteColor()
                 self.addSubview(lblContinue)
                 UIView.animateWithDuration(0.3, delay: 1.0, options: .CurveLinear, animations: { () -> Void in
                     self.lblContinue.alpha = 1.0
@@ -208,9 +207,9 @@ class CoachMarksView: UIView {
             btnSkipCoach = UIButton(frame: CGRectMake(lblContinueWidth, self.bounds.height - 30, btnSkipWidth, 30))
             btnSkipCoach.addTarget(self, action: "skipCoach", forControlEvents: .TouchUpInside)
             btnSkipCoach.setTitle("Skip", forState: .Normal)
-            btnSkipCoach.titleLabel?.font = brand.rhymeFont
+            btnSkipCoach.titleLabel?.font = UIFont.systemFontOfSize(15)
             btnSkipCoach.alpha = 0
-            btnSkipCoach.tintColor = brand.background
+            btnSkipCoach.tintColor = UIColor.whiteColor()
             self.addSubview(btnSkipCoach)
             UIView.animateWithDuration(0.3, delay: 1.0, options: .CurveLinear, animations: { () -> Void in
                 self.btnSkipCoach.alpha = 1
